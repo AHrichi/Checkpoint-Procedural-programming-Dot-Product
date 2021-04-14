@@ -1,0 +1,63 @@
+PROCEDURE P_orthogonal(VAR ps:INTEGER,V_1,V_2:ARRAY_OF INTEGER)
+VAR
+    i:INTEGER;
+BEGIN
+    ps:=0
+    FOR i FROM 0 TO V_1.length-1 STEP 1  DO
+        ps:=ps+V_1[i]*V_2[2];
+    END_FOR
+END
+
+
+FUNCTION F_orthogonal(V_1,V_2:ARRAY_OF INTEGER) : INTEGER
+VAR
+    i:INTEGER;
+    ps:INTEGER:=0;
+BEGIN
+    FOR i FROM 0 TO V_1.length-1 STEP 1  DO
+        ps:=ps+V_1[i]*V_2[2];
+    END_FOR
+    RETURN ps ;
+END
+
+
+
+ALGORITHM orthogonal_n_p
+VAR
+    ps,n:INTEGER;
+    V_1,V_2:ARRAY_OF INTEGER[50];
+BEGIN
+    write("give me the number of pairs");
+    read(n);
+    FOR i FROM 1 TO n STEP 1  DO
+        read(V_1);
+        read(V_2);
+        P_orthogonal(ps,V_1,V_2);
+        IF (ps=0) THEN
+            write("the two vectors are orthogonal");
+        ELSE
+            write("the two vectors are not orthogonal");
+        END_IF
+    END_FOR
+END
+
+
+ALGORITHM orthogonal_n_f
+VAR
+    ps,n:INTEGER;
+    V_1,V_2:ARRAY_OF INTEGER[50];
+BEGIN
+    write("give me the number of pairs");
+    read(n);
+    FOR i FROM 1 TO n STEP 1  DO
+        read(V_1);
+        read(V_2);
+        ps:=F_orthogonal(V_1,V_2);
+        IF (ps=0) THEN
+            write("the two vectors are orthogonal");
+        ELSE
+            write("the two vectors are not orthogonal");
+        END_IF
+    END_FOR
+    
+END
